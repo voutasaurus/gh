@@ -8,6 +8,33 @@ import (
 	"sort"
 )
 
+func init() {
+	addHelp(
+		"list",
+		`
+gh list (shortname: gh ls) lists all github repos the user has write access to.
+
+Usage: 
+	
+	gh list
+
+listed repos are grouped by owner and sorted alphabetically.
+		`,
+	)
+	addHelp(
+		"ls",
+		`
+gh ls (longname: gh list) lists all github repos the user has write access to.
+
+Usage: 
+	
+	gh ls
+
+listed repos are grouped by owner and sorted alphabetically.
+		`,
+	)
+}
+
 func cmdlist() {
 	u, p, err := getCreds()
 	if err != nil {

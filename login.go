@@ -59,7 +59,7 @@ func prompt() (username, password string, err error) {
 		return "", "", err
 	}
 
-	fmt.Print("password: ")
+	fmt.Print("password/token: ")
 	p, err := terminal.ReadPassword(0)
 	if err != nil {
 		return "", "", err

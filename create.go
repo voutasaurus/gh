@@ -7,6 +7,41 @@ import (
 	"net/http"
 )
 
+func init() {
+	addHelp(
+		"create",
+		`
+gh create (shortname: gh mk) creates a github repo.
+
+Usage: 
+	
+	gh create reponame
+
+git setup refresher:
+
+	git init
+	git remote add origin https://github.com/username/reponame
+	git push --set-upstream origin master
+		`,
+	)
+	addHelp(
+		"mk",
+		`
+gh mk (longname: gh create) creates a github repo.
+
+Usage: 
+	
+	gh mk reponame
+
+git setup refresher:
+
+	git init
+	git remote add origin https://github.com/username/reponame
+	git push --set-upstream origin master
+		`,
+	)
+}
+
 func cmdcreate(reponame string) {
 	b, err := json.Marshal(&struct {
 		Name string `json:"name"`
