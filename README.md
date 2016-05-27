@@ -1,4 +1,5 @@
-# gh
+gh [![Build Status](https://travis-ci.org/voutasaurus/gh.svg?branch=master)](https://travis-ci.org/voutasaurus/gh)
+=======
 
 gh is a simple tool that creates, lists and removes github repos.
 
