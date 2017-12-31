@@ -24,6 +24,8 @@ func getCreds() (username, password string, err error) {
 		return "", "", err
 	}
 	if u != "" && p != "" {
+		u = strings.Trim(u, "\r")
+		p = strings.Trim(p, "\r")
 		return u, p, nil
 	}
 	u, p, err = prompt()
