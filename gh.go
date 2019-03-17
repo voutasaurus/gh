@@ -1,6 +1,9 @@
 package main
 
-import "flag"
+import (
+	"flag"
+	"os"
+)
 
 const base = "https://api.github.com"
 
@@ -27,17 +30,29 @@ Use "gh help [command]" for more information about a command.
 }
 
 func main() {
-	flag.Parse()
-	switch flag.Arg(0) {
+	cmd := "gh"
+	if len(os.Args) > 1 {
+		cmd = os.Args[1]
+	}
+	switch cmd {
+	case "gh":
+		cmdhelp("")
 	case "h", "help":
-		cmdhelp(flag.Arg(1))
+		fs := flag.NewFlagSet("help", 0)
+		fs.Parse(os.Args[2:])
+		cmdhelp(fs.Arg(0))
 	case "login":
 		cmdlogin()
 	case "ls", "list":
 		cmdlist()
 	case "mk", "create":
-		cmdcreate(flag.Arg(1))
+		fs := flag.NewFlagSet("create", 0)
+		fPrivate := fs.Bool("p", false, "Make created repo private")
+		fs.Parse(os.Args[2:])
+		cmdcreate(fs.Arg(0), *fPrivate)
 	case "rm", "delete":
-		cmddelete(flag.Arg(1))
+		fs := flag.NewFlagSet("delete", 0)
+		fs.Parse(os.Args[2:])
+		cmddelete(fs.Arg(0))
 	}
 }

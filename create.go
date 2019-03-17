@@ -42,11 +42,13 @@ git setup refresher:
 	)
 }
 
-func cmdcreate(reponame string) {
+func cmdcreate(reponame string, private bool) {
 	b, err := json.Marshal(&struct {
-		Name string `json:"name"`
+		Name    string `json:"name"`
+		Private bool   `json:"private"`
 	}{
-		Name: reponame,
+		Name:    reponame,
+		Private: private,
 	})
 	if err != nil {
 		log.Fatal(err)
